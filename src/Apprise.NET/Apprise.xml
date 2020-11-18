@@ -1,0 +1,825 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Apprise</name>
+    </assembly>
+    <members>
+        <member name="T:Apprise.NotificationType">
+            <summary>
+            Set notification type
+            </summary>
+        </member>
+        <member name="F:Apprise.NotificationType.Info">
+            <summary>
+            Info notification type
+            </summary>
+        </member>
+        <member name="F:Apprise.NotificationType.Success">
+            <summary>
+            Success notification type
+            </summary>
+        </member>
+        <member name="F:Apprise.NotificationType.Warning">
+            <summary>
+            Warning notification type
+            </summary>
+        </member>
+        <member name="F:Apprise.NotificationType.Failure">
+            <summary>
+            Failure notification type
+            </summary>
+        </member>
+        <member name="T:Apprise.Service.AwsSns">
+            <summary>
+            <para>AWS SNS Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_sns">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.AwsSns.#ctor(System.String,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of AWS SNS Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="accessKeyId">The generated Access Key ID from the AWS Management Console</param>
+            <param name="accessKeySecret">The generated Access Key Secret from the AWS Management Console</param>
+            <param name="region">The region code might look like us-east-1, us-west-2, cn-north-1, etc</param>
+            <param name="phoneNumbers">The phone numbers MUST include the country codes dialing prefix as well when placed. You can optionally prefix the entire number with a plus symbol (+) to enforce that the value be interpreted as a phone number (in the event it can't be auto-detected otherwise). This field is also very friendly and supports brackets, spaces and hyphens in the event you want to format the number in an easy to read fashion.</param>
+            <param name="topics">The topics you want to publish your message to.</param>
+            <exception cref="T:System.ArgumentException">At least one phone number or topic must be specified.</exception>
+        </member>
+        <member name="T:Apprise.Service.Base.NotificationServiceBase">
+            <summary>
+            Base class for Notification Services
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Base.NotificationServiceBase.NotifyAsync(System.String)">
+            <summary>
+            Sends notification.
+            </summary>
+            <param name="message">Body of the message</param>
+            <returns>Returns a value that indicates if the request was successful.</returns>
+        </member>
+        <member name="M:Apprise.Service.Base.NotificationServiceBase.NotifyAsync(System.String,System.String)">
+            <summary>
+            Sends notification.
+            </summary>
+            <param name="messageBody">Body of the message</param>
+            <param name="messageTitle">Title of the message</param>
+            <returns>Returns a value that indicates if the request was successful.</returns>
+        </member>
+        <member name="M:Apprise.Service.Base.NotificationServiceBase.NotifyAsync(System.String,System.String,Apprise.NotificationType)">
+            <summary>
+            Sends notification.
+            </summary>
+            <param name="messageBody">Body of the message</param>
+            <param name="messageTitle">Title of the message</param>
+            <param name="notificationType">Notification type</param>
+            <returns>Returns a value that indicates if the request was successful.</returns>
+        </member>
+        <member name="T:Apprise.Service.Boxcar">
+            <summary>
+            <para>Boxcar Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_boxcar">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Boxcar.#ctor(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of Boxcar Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="accessKey">This is required for your account to work. You will be provided one from boxcar's website upon creating an account with them.</param>
+            <param name="secureKey">This is required for your account to work. You will be provided one from boxcar's website upon creating an account with them.</param>
+            <param name="deviceIds">Associated devices with your Boxcar setup. All device_ids are 64 characters in length.</param>
+            <param name="tagIds">Tags must be prefixed with a @ symbol or they will be interpreted as a device_id and/or alias.</param>
+        </member>
+        <member name="T:Apprise.Service.ClickSend">
+            <summary>
+            <para>Telegram Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_clicksend">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.ClickSend.#ctor(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of ClickSend Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="username">The username associated with your ClickSend account.</param>
+            <param name="password">The password associated with your ClickSend account.</param>
+            <param name="phoneNumbers">At least one phone number MUST identified to use this plugin. This field is also very friendly and supports brackets, spaces and hyphens in the event you want to format the number in an easy to read fashion.</param>
+            <exception cref="T:System.ArgumentException">You must specify at least one phone number.</exception>
+        </member>
+        <member name="T:Apprise.Service.D7Networks">
+            <summary>
+            <para>Direct 7 Networks Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_d7networks">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.D7Networks.#ctor(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of D7 Networks Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="username">The username associated with your D7 Networks account.</param>
+            <param name="password">The password associated with your D7 Networks account.</param>
+            <param name="phoneNumbers">At least one phone number MUST identified to use this plugin. This field is also very friendly and supports brackets, spaces and hyphens in the event you want to format the number in an easy to read fashion.</param>
+            <exception cref="T:System.ArgumentException">You must specify at least one phone number.</exception>
+        </member>
+        <member name="T:Apprise.Service.Discord">
+            <summary>
+            <para>Discord Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_discord">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Discord.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of Discord Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="webhookUrl">The Webhook URL provided by Discord</param>
+        </member>
+        <member name="M:Apprise.Service.Discord.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of Discord Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="webhookId">The first part of 2 tokens provided to you after creating a incoming-webhook</param>
+            <param name="webhookToken">The second part of 2 tokens provided to you after creating a incoming-webhook</param>
+        </member>
+        <member name="T:Apprise.Service.EMail">
+            <summary>
+            <para>E-Mail Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_email">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.EMail.#ctor(System.String,System.String,System.String,Apprise.Service.Enums.EMailProvider)">
+            <summary>
+            Initializes a new instance of E-Mail Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="userId">The account login to your SMTP server.</param>
+            <param name="password">The password required to send an email via your SMTP Server.</param>
+            <param name="mailProvider">E-Mail service provider to use</param>
+        </member>
+        <member name="M:Apprise.Service.EMail.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            Initializes a new instance of E-Mail Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="userId">The account login to your SMTP server.</param>
+            <param name="password">The password required to send an email via your SMTP Server.</param>
+            <param name="domain">If your email address was test@example.com then example.com is your domain. You must provide this as part of the URL string!</param>
+            <param name="port">The port your SMTP server is listening on. Leave empty to use defaults.</param>
+            <param name="tls">Enable TLS prior to sending the user and password.</param>
+            <param name="smtp">If the SMTP server differs from your specified domain, then you'll want to specify it as an argument in your URL.</param>
+            <param name="from">If you want the email address ReplyTo address to be something other then your own email address, then you can specify it here.</param>
+            <param name="to">This will enforce (or set the address the email is sent To). This is only required in special circumstances. The notification script is usually clever enough to figure this out for you.</param>
+            <param name="name">With respect to <paramref name="from" />, this allows you to provide a name with your ReplyTo address.</param>
+            <param name="cc">Carbon Copy email address(es).</param>
+            <param name="bcc">Blind Carbon Copy email address(es).</param>
+            <param name="mode">Mode allows you to change the connection method. Some sites only support SSL (mode=ssl) while others only support STARTTLS (mode=starttls). The default value is starttls.</param>
+        </member>
+        <member name="T:Apprise.Service.Emby">
+            <summary>
+            <para>Emby Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_emby">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Emby.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of Emby Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="hostname">The server Emby is listening on.</param>
+            <param name="userId">The account login to your Emby server.</param>
+            <param name="password">The password associated with your Emby Server.</param>
+            <param name="port">The port Emby is listening on. By default the port is 8096 for both http and https.</param>
+            <param name="modal">Defines if the notification should appear as a modal type box. By default this is set to No.</param>
+            <param name="https">Indicates whether to use http or https.</param>
+        </member>
+        <member name="T:Apprise.Service.Enigma2">
+            <summary>
+            <para>Enigma2 Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_enigma2">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Enigma2.#ctor(System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of Enigma2 Notification Service class
+            </summary>
+            <param name="appriseUrl"></param>
+            <param name="hostname">The Enigma2 devices IP/hostname</param>
+            <param name="port">The port our Web server is listening on. By default the port is 80 for enigma2s:// and 443 for all enigma2:// references.</param>
+            <param name="user">If your system is set up to use HTTP-AUTH, you can provide username for authentication to it.</param>
+            <param name="password">If your system is set up to use HTTP-AUTH, you can provide password for authentication to it.</param>
+            <param name="tls">Enable TLS prior to sending the user and password.</param>
+        </member>
+        <member name="T:Apprise.Service.Enums.EMailProvider">
+            <summary>
+            Set EMail provider for Email Notification Service
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.EMailProvider.Yahoo">
+            <summary>
+            @yahoo.com
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.EMailProvider.Hotmail">
+            <summary>
+            @hotmail.com
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.EMailProvider.Live">
+            <summary>
+            @live.com
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.EMailProvider.Prontomail">
+            <summary>
+            @prontomail.com
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.EMailProvider.Gmail">
+            <summary>
+            @gmail.com
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.EMailProvider.Fastmail">
+            <summary>
+            @fastmail.com
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.EMailProvider.Zoho">
+            <summary>
+            @zoho.com
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.EMailProvider.Yandex">
+            <summary>
+            @yandex.com
+            </summary>
+        </member>
+        <member name="T:Apprise.Service.Enums.GotifyPriority">
+            <summary>
+            Set priority for Gotify Notification Service
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.GotifyPriority.Low">
+            <summary>
+            Low priority
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.GotifyPriority.Moderate">
+            <summary>
+            Moderate priority
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.GotifyPriority.Normal">
+            <summary>
+            Normal priority
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.GotifyPriority.High">
+            <summary>
+            High priority
+            </summary>
+        </member>
+        <member name="T:Apprise.Service.Enums.GrowlPriority">
+            <summary>
+            Set priority for Growl Notification Service
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.GrowlPriority.Low">
+            <summary>
+            Low priority
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.GrowlPriority.Moderate">
+            <summary>
+            Moderate priority
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.GrowlPriority.Normal">
+            <summary>
+            Normal priority
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.GrowlPriority.High">
+            <summary>
+            High priority
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.GrowlPriority.Emergency">
+            <summary>
+            Emergency priority
+            </summary>
+        </member>
+        <member name="T:Apprise.Service.Enums.IFTTTMessageType">
+            <summary>
+            Set message type for IFTTT Notification Service
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.IFTTTMessageType.Info">
+            <summary>
+            Info message type
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.IFTTTMessageType.Warning">
+            <summary>
+            Warning message type
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.IFTTTMessageType.Critical">
+            <summary>
+            Critical message type
+            </summary>
+        </member>
+        <member name="F:Apprise.Service.Enums.IFTTTMessageType.Success">
+            <summary>
+            Success message type
+            </summary>
+        </member>
+        <member name="T:Apprise.Service.Enums.LaMetricPriority">
+            <summary>
+            Sets priority type to LaMetric Notification Service
+            </summary>
+        </member>
+        <member name="T:Apprise.Service.Enums.LaMetricSounds">
+            <summary>
+            Sets type of alarm to be used in LaMetric Notification Service
+            </summary>
+        </member>
+        <member name="T:Apprise.Service.Faast">
+            <summary>
+            <para>Faast Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_faast">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Faast.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of Faast Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="authorizationtoken">The authorization token associated with your Faast account.</param>
+        </member>
+        <member name="T:Apprise.Service.Flock">
+            <summary>
+            <para>Flock Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_flock">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Flock.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            Initializes a new instance of Flock Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="token">The first part of 3 tokens provided to you after creating a incoming-webhook and or an application/bot</param>
+            <param name="channels">Channels must represent the encoded id of the channel name (not the human readable reference).</param>
+            <param name="users">Users must represent the encoded id of the user name (not the human readable reference).</param>
+            <param name="botname">Identify the name of the bot that should issue the message. If one isn't specified then the default is to just use your account (associated with the incoming-webhook).</param>
+            <exception cref="T:System.ArgumentException">At least one channel or user must be specified.</exception>
+        </member>
+        <member name="T:Apprise.Service.Gitter">
+            <summary>
+            <para>AWS SNS Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_gitter">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Gitter.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of Gitter Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="token">The Personal Access Token associated with your account. This is available to you after signing into their <see href="https://developer.gitter.im/apps">development website</see>.</param>
+            <param name="rooms">Rooms you want to notify. You can specify as many as you want.</param>
+            <exception cref="T:System.ArgumentException">At least one room must be specified.</exception>
+        </member>
+        <member name="T:Apprise.Service.Gotify">
+            <summary>
+            <para>Telegram Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_gotify">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Gotify.#ctor(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,Apprise.Service.Enums.GotifyPriority,System.Boolean)">
+            <summary>
+            Initializes a new instance of Gotify Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="hostname">The Rocket.Chat server you're sending your notification to.</param>
+            <param name="token">The Application Token you generated on your Gotify Server</param>
+            <param name="port">The port the Gotify server is listening on.</param>
+            <param name="path">For those that host their Gotify server on a hostname that requires you to specify an additional path prefix may just include this as part of their URL string (the default is '/').</param>
+            <param name="priority">The priority level to pass the message along as. Possible values are low, moderate, normal, and high.</param>
+            <param name="tls">Use secure connection.</param>
+        </member>
+        <member name="T:Apprise.Service.Growl">
+            <summary>
+            <para>Telegram Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_growl">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Growl.#ctor(System.String,System.String,System.Nullable{System.Int32},System.String,System.Boolean,Apprise.Service.Enums.GrowlPriority)">
+            <summary>
+            Initializes a new instance of Growl Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="hostname">The server Growl server is listening on.</param>
+            <param name="port">The port Growl Server is listening on.</param>
+            <param name="password">The password associated with the Growl server if you set one up.</param>
+            <param name="useVersion1">If you would require the 1.4 version of the protocol.</param>
+            <param name="priority">Can be low, moderate, normal, high, or emergency; the default is normal.</param>
+        </member>
+        <member name="T:Apprise.Service.IFTTT">
+            <summary>
+            <para>IFTTT Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_ifttt">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.IFTTT.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of IFTTT Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="webhookUrl"></param>
+        </member>
+        <member name="M:Apprise.Service.IFTTT.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Boolean,System.Boolean,System.Boolean,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Initializes a new instance of IFTTT Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="webhookId">Your webhooks API Key you got from <see href="https://ifttt.com/services/maker_webhooks">the settings area of the webhooks service itself</see>.</param>
+            <param name="events">This is the Event Name you assigned to the Applet you created. You must at least pass in one of these. This is the event plan on triggering through the webhook.</param>
+            <param name="useValue1">Set to false if you don't want to send the title message.</param>
+            <param name="useValue2">Set to false if you don't want to send the body message.</param>
+            <param name="useValue3">Set to false if you don't want to send the message type.</param>
+            <param name="args">A dictionary of additional arguments.</param>
+            <exception cref="T:System.ArgumentException">At least one event must be specified.</exception>
+        </member>
+        <member name="T:Apprise.Service.Join">
+            <summary>
+            <para>Join Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_join">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Join.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of Join Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="apiKey">The api key associated with your Join account.</param>
+            <param name="deviceIds">The device identifier to send your notification to (a 32 bit alpha-numeric string).</param>
+            <param name="groupIds">The group identifier to send your notification to.</param>
+            <param name="deviceNames"></param>
+        </member>
+        <member name="T:Apprise.Service.Kavenegar">
+            <summary>
+            <para>Kavenegar Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_kavenegar">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Kavenegar.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            Initializes a new instance of Kavenegar Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="apiKey">The API Key associated with your Kavengar account. This is available to you via the account profile section of their website (after logging in).</param>
+            <param name="toPhoneNumbers">Kavengar does not handle the + in front of the country codes. You need to substitute the correct amount of zero's in front of the outbound number in order for the call to be completed.</param>
+            <param name="fromPhoneNumber">The number you wish to identify your call is coming from. This argument is optional.</param>
+            <exception cref="T:System.ArgumentException">At least one \"To:\" phone number must be specified.</exception>
+        </member>
+        <member name="T:Apprise.Service.Kodi">
+            <summary>
+            <para>KODI Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_kodi">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Kodi.#ctor(System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of KODI Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="hostname">The server Kodi is listening on.</param>
+            <param name="port">The port Kodi is listening on.</param>
+            <param name="userId">The account login to your KODI server.</param>
+            <param name="password">The password associated with your KODI Server.</param>
+            <param name="useHttps">Indicates whether to use HTTP or HTTPS.</param>
+        </member>
+        <member name="T:Apprise.Service.Kumulos">
+            <summary>
+            <para>Kumulos Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_kumulos">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Kumulos.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of Kumulos Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="apiKey">The API Key associated with your Kumulos account.</param>
+            <param name="serverKey">The Server Secret associated with your Kumulos account.</param>
+        </member>
+        <member name="T:Apprise.Service.LaMetric">
+            <summary>
+            <para>LaMetric Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_lametric">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.LaMetric.#ctor(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{Apprise.Service.Enums.LaMetricSounds},System.Nullable{Apprise.Service.Enums.LaMetricPriority})">
+            <summary>
+            Initializes a new instance of LaMetric Notification Service class in Device Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="apiKey">Your Device API Key can be found on LaMetric's website.</param>
+            <param name="hostname">This is the IP address or hostname of your Lametric device on your local network.</param>
+            <param name="port">The port your LaMetric device is listening on. By default the port is 8080.</param>
+            <param name="userId">The account login to your Lametric device on your local network. By default the user is set to dev.</param>
+            <param name="cycles">The number of times message should be displayed. If cycles is set to 0, notification will stay on the screen until user dismisses it manually. By default it is set to 1.</param>
+            <param name="sound">An audible alarm that can be sent with the notification.</param>
+            <param name="priority">The priority of the message.</param>
+        </member>
+        <member name="M:Apprise.Service.LaMetric.#ctor(System.String,System.String,System.String,System.Version)">
+            <summary>
+            Initializes a new instance of LaMetric Notification Service class in Cloud Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="appId">Your Indicator App's Application ID can be found in your Indicator App Configuration*. You can access your application's configuration from the LaMetric's website.</param>
+            <param name="appAccessToken">Your Indicator App's Access Token can be found in your Indicator App Configuration*. You can access your application's configuation from the LaMetric's website.</param>
+            <param name="appVersion">The version associated with your Indicator App. If this isn't specified, then the default value of 1 (One) is used.</param>
+        </member>
+        <member name="T:Apprise.Service.Mailgun">
+            <summary>
+            <para>Mailgun Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_mailgun">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Mailgun.#ctor(System.String,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},Apprise.Service.Enums.MailgunRegion,System.String)">
+            <summary>
+            Initializes a new instance of Mailgun Notification Service class in Device Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="apiKey">The API Key associated with the domain you want to send your email from. This is available to you after signing into their website an accessing the dashboard.</param>
+            <param name="domain">The Domain you wish to send your email from; this domain must be registered and set up with your mailgun account.</param>
+            <param name="user">The user gets paired with the domain you specify on the URL to make up the From email address your recipients receive their email from.</param>
+            <param name="emails">You can specify as many email addresses as you wish. Each address you identify here will represent the To.</param>
+            <param name="region">Identifies which server region you intend to access. Supported options here are eu and us. By default this is set to us unless otherwise specified.</param>
+            <param name="from"></param>
+        </member>
+        <member name="T:Apprise.Service.Matrix">
+            <summary>
+            <para>Matrix Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_matrix">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Matrix.#ctor(System.String,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of Matrix Notification Service class in Device Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="matrixHost">The matrix server you wish to connect to.</param>
+            <param name="user">The user to authenticate (and/or register) with the matrix server</param>
+            <param name="password">The password to authenticate (and/or register) with the matrix server.</param>
+            <param name="roomAliases">The room aliases you wish to join (if not there already) and broadcast your notification.</param>
+            <param name="roomIds">The room ids you wish to join (if not there already) and broadcast your notification.</param>
+            <exception cref="T:System.ArgumentException">At least one room alias or room id must be specified.</exception>
+        </member>
+        <member name="M:Apprise.Service.Matrix.#ctor(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of Matrix Notification Service class in Device Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="hostname">The matrix server you wish to connect to.</param>
+            <param name="token">Token to use with request.</param>
+            <param name="webhook">Type of webhook service set up.</param>
+            <param name="user">The user to authenticate (and/or register) with the matrix server</param>
+            <param name="port">The server port Matrix is listening on. By default is set to 80 or to 443 if <paramref name="useHttps" /> is set to true.</param>
+            <param name="format">Format of the message.</param>
+            <param name="useHttps">Indicates whether to use http or https.</param>
+        </member>
+        <member name="M:Apprise.Service.Matrix.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of Matrix Notification Service class in Device Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="t2botWebhookToken">This is effectively the hostname but acts as the t2bot webhook token if the mode is set to t2bot.</param>
+            <param name="user">The user to authenticate (and/or register) with the matrix server</param>
+        </member>
+        <member name="M:Apprise.Service.Matrix.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of Matrix Notification Service class in Device Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="t2botUrl">T2bot URL as they share it with you from their website.</param>
+        </member>
+        <member name="T:Apprise.Service.Mattermost">
+            <summary>
+            <para>Mattermost Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_mattermost">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Mattermost.#ctor(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of Mattermost Notification Service class in Device Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="hostname">The server Mattermost is listening on.</param>
+            <param name="authToken">The Authentication Token (the WebHook ID) you would have gotten after setting up the Mattermost server.</param>
+            <param name="port">The server port Mattermost is listening on. By default the port is 8065.</param>
+            <param name="path">You can identify a sub-path if you wish.</param>
+            <param name="botname">An optional botname you can associate with your post.</param>
+            <param name="useHttps">Indicates whether to use http or https.</param>
+        </member>
+        <member name="T:Apprise.Service.MessageBird">
+            <summary>
+            <para>MessageBird Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_messagebird">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.MessageBird.#ctor(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of MessageBird Notification Service class in Device Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="apiKey">The API Key associated with your MessageBird account. This is available to you via the MessageBird Dashboard.</param>
+            <param name="fromPhoneNumber">A from phone number MUST include the country codes dialling prefix as well when placed. This field is also very friendly and supports brackets, spaces and hyphens in the event you want to format the number in an easy to read fashion. This MUST be the the number you registered with your MessageBird account.</param>
+            <param name="toPhoneNumbers">Phone numbers MUST include the country codes dialling prefix as well when placed. This field is also very friendly and supports brackets, spaces and hyphens in the event you want to format the number in an easy to read fashion. If no <paramref name="toPhoneNumbers" /> is specified, then the <paramref name="fromPhoneNumber" /> is notified instead.</param>
+        </member>
+        <member name="T:Apprise.Service.MicrosoftTeams">
+            <summary>
+            <para>Microsoft Teams Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_msteams">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.MicrosoftTeams.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of Microsoft Teams Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="webhook">Incoming webhook you generated on MS Teams.</param>
+        </member>
+        <member name="M:Apprise.Service.MicrosoftTeams.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of Microsoft Teams Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="tokenA">The first part of 3 tokens provided to you after creating a incoming-webhook.</param>
+            <param name="tokenB">The second part of 3 tokens provided to you after creating a incoming-webhook.</param>
+            <param name="tokenC">The last part of 3 tokens provided to you after creating a incoming-webhook.</param>
+        </member>
+        <member name="T:Apprise.Service.MSG91">
+            <summary>
+            <para>MSG91 Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_msg91">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.MSG91.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of MSG91 Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="authKey">The Authentication Key associated with your MSG91 account. This is available to you via the MSG91 Dashboard.</param>
+            <param name="phoneNumbers">A phone number MUST include the country codes dialing prefix as well when placed. This field is also very friendly and supports brackets, spaces and hyphens in the event you want to format the number in an easy to read fashion</param>
+            <param name="senderId">Id of the sender.</param>
+            <param name="route">The SMS Route. This is an SMG91 configuration that defaults to 1 (Transactional) if not otherwise specified.</param>
+            <param name="country">The SMS Country. This is an SMG91 optional configuration that can either be 91 if referencing India, 1 if the USA and 0 if International.</param>
+            <exception cref="T:System.ArgumentException">At least one phone number must be specified.</exception>
+        </member>
+        <member name="T:Apprise.Service.Nexmo">
+            <summary>
+            <para>Nexmo Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_nexmo">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Nexmo.#ctor(System.String,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of Nexmo Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="apiKey">The API Key associated with your Nexmo account. This is available to you via the Nexmo Dashboard.</param>
+            <param name="apiSecret">The API Secret associated with your Nexmo account. This is available to you via the Nexmo Dashboard.</param>
+            <param name="fromPhoneNumber">This must be a From Phone Number that has been provided to you from the Nexmo website.</param>
+            <param name="toPhoneNumbers">A phone number MUST include the country codes dialling prefix as well when placed. This field is also very friendly and supports brackets, spaces and hyphens in the event you want to format the number in an easy to read fashion.</param>
+        </member>
+        <member name="T:Apprise.Service.Nextcloud">
+            <summary>
+            <para>Nextcloud Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_nextcloud">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Nextcloud.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.String,System.String,System.Nullable{System.Int32},System.Boolean)">
+            <summary>
+            Initializes a new instance of Nextcloud Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="hostname">The hostname of the server hosting your Nextcloud service.</param>
+            <param name="notifyUsers">One or more users you wish to send your notification to.</param>
+            <param name="adminUser">The administration user of the next cloud service you have set up.</param>
+            <param name="password">The administrator password associated with the <paramref name="adminUser" /> for your Nextcloud account.</param>
+            <param name="port">The server port Nextcloud is listening on.</param>
+            <param name="useHttps">Indicates whether to use http or https.</param>
+            <exception cref="T:System.ArgumentException">At least one user to notify must be specified.</exception>
+        </member>
+        <member name="T:Apprise.Service.Notica">
+            <summary>
+            <para>Notica Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_notica">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Notica.#ctor(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of Notica Notification Service class in Device Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="token">The Token that was generated for you after visiting their website. Alternatively this should be the token used by your self hosted solution.</param>
+            <param name="hostname">The Web Server's hostname.</param>
+            <param name="port">The port our Web server is listening on. By default the port is 80 or 443 if <paramref name="useHttps" /> is set to true.</param>
+            <param name="user">If you're system is set up to use HTTP-AUTH, you can provide username for authentication to it.</param>
+            <param name="password">If you're system is set up to use HTTP-AUTH, you can provide password for authentication to it.</param>
+            <param name="useHttps">Indicates whether to use http or https.</param>
+        </member>
+        <member name="T:Apprise.Service.Notifico">
+            <summary>
+            <para>Notifico Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_notifico">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Notifico.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of Notifico Notification Service class in Device Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="url">Native URL as retrieved from the website.</param>
+        </member>
+        <member name="M:Apprise.Service.Notifico.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of Notifico Notification Service class in Device Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="projectId">The project ID is an integer and makes up the first part of the provided Notifico Message Hook URL.</param>
+            <param name="messageHook">The message hook can be found at the end of the provided Notifico Message Hook URL.</param>
+            <param name="color">Uses IRC Coloring to provide a richer experience. It also allows the parsing of IRC colors found in the notification passed in. You must ensure the Color Checkbox is selected when setting up your Message Hook for this to work. By default this is set to Yes.</param>
+            <param name="prefix">All messages sent to IRC by default have a Prefix that help identify the type of message (info, error, warning, or success) as well as the system performing the notification. By default this is set to Yes.</param>
+        </member>
+        <member name="T:Apprise.Service.Office365">
+            <summary>
+            <para>Office 365 Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_office365">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Office365.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of Office 365 Notification Service class in Device Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="tenantId">The Tenant ID Associated with your Azure Application you created. This can also be referred to as your Directory ID.</param>
+            <param name="accountEmail">The Email Associated with your Azure account.</param>
+            <param name="clientId">The Client ID Associated with your Azure Application you created. This can also be referred to as your Application ID.</param>
+            <param name="clientSecret">You will need to generate one of these; this can be done through the Azure portal (Also documented below).</param>
+            <param name="from">If you want the email address ReplyTo address to be something other then your own email address, then you can specify it here.</param>
+            <param name="to">This will enforce (or set the address) the email is sent To. By default the email is sent to the address identified by the <paramref name="accountEmail" />.</param>
+        </member>
+        <member name="T:Apprise.Service.PopcornNotify">
+            <summary>
+            <para>PopcornNotify Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_popcornnotify">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.PopcornNotify.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of PopcornNotify Notification Service class in Device Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="apiKey">The Personal API Token associated with your account.</param>
+            <param name="phoneNumbers">Phone Numbers you wish to notify (via SMS).</param>
+            <param name="emails">The Email addresses you wish to notify.</param>
+            <exception cref="T:System.ArgumentException" />
+        </member>
+        <member name="T:Apprise.Service.Prowl">
+            <summary>
+            <para>Prowl Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_prowl">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Prowl.#ctor(System.String,System.String,System.String,Apprise.Service.Enums.ProwlPriority)">
+            <summary>
+            Initializes a new instance of Prowl Notification Service class in Device Mode
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API.</param>
+            <param name="apiKey">The API Key provided to you after you create yourself a Prowl account.</param>
+            <param name="providerKey">The Provider Key is only required if you have been whitelisted.</param>
+            <param name="priority">Can be low, moderate, normal, high, or emergency; the default is normal if a priority isn't specified.</param>
+        </member>
+        <member name="T:Apprise.Service.Telegram">
+            <summary>
+            <para>Telegram Notification Service</para>
+            <para>For more information, please visit <see href="https://github.com/caronc/apprise/wiki/Notify_telegram">Apprise Wiki</see>.</para>
+            </summary>
+        </member>
+        <member name="M:Apprise.Service.Telegram.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            Initializes a new instance of Telegram Notification Service class
+            </summary>
+            <param name="appriseUrl">The URL of Apprise API</param>
+            <param name="botToken">The token that identifies the bot you created through the <see href="https://botsfortelegram.com/project/the-bot-father/">BotFather</see> /></param>
+            <param name="chatIds">Identify the users you want your bot to deliver your notifications to.</param>
+        </member>
+    </members>
+</doc>

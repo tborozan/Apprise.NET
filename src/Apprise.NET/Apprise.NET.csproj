@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <Version>0.1.0</Version>
+    <Authors>Toni Borozan</Authors>
+    <Description>Apprise.NET is a .NET Wrapper for calling Apprise API.</Description>
+    <Product>Apprise.NET</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/tborozan/Apprise.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/tborozan/Apprise.NET</RepositoryUrl>
+    <PackageTags>Apprise, Wrapper, Notifications, SNS, Boxcar, ClickSend, Discord, D7 Networks, E-Mail, Emby, Enigma2, Faast, Flock, Gitter, Gotify, Growl, IFTTT, Join, Kavengar, KODI, Kumulos, LaMetric, Mailgun, Matrix, MatterMost, MessageBird, Microsoft Teams, MSG91, Nexmo, Nextcloud, Notica, Notifico, Office 365, Popcorn Notify, Prowl, PushBullet, Pushed, Pushover, PushSafer, Rocket.Chat, Ryver, Sendgrid, SimplePush, Sinch, Slack, SparkPost, Spontit, Syslog, Techulus Push, Telegram, Twilio, Twist, Twitter, XBMC, XMPP, Webex Teams, Zulip</PackageTags>
+    <PackageId>Apprise.NET</PackageId>
+  </PropertyGroup>
+
+    <PropertyGroup>
+	    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DocumentationFile></DocumentationFile>
+    </PropertyGroup>
+
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+			<_Parameter1>$(AssemblyName).Tests</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+
+</Project>

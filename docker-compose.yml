@@ -1,0 +1,7 @@
+version: "3"
+
+services: 
+    apprise:
+        image: caronc/apprise
+        ports: 
+            - 8000:8000
