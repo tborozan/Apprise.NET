@@ -2,7 +2,7 @@
 Simple .NET wrapper for [Apprise API](https://github.com/caronc/apprise-api).
 
 ## Setup
-This wrapper assumes you have Apprise API runnging as stateless sidecar solution.
+This wrapper assumes you have Apprise API running as stateless sidecar solution.
 
 An easy and quick way to get it up and running is using docker
 
